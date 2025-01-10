@@ -1,10 +1,27 @@
-Before running script note:
+## Setup procedure
+
+**Before running script note:**
 
 - Replace 'service_account.json' with the path to your service account key file.
 - Replace 'your_folder_id_here' with your Google Drive folder ID or leave it None for the root folder.
 - Replace 'backup_folder' with the path to the directory you want to back up.
+- Replace 'main.py' in start_backup.sh with full path.
 
-To setup corn for script:
+**Setup procedure for backup**
+
+`docker exec -t kartozageoserver-db-1 bash`
+
+Inside container
+
+
+`cd /root`
+
+`echo localhost:5432:*:postgres:strategy@123>.pgjson`
+
+`exit`
+
+
+**To setup corn for script:**
 
 1. Edit the Crontab File:
 
@@ -16,15 +33,9 @@ crontab -e
 Suppose you want to run the script every day at 2:00 AM:
 
 ```
-0 2 * * * /usr/bin/python3 /path/to/drive_backup.py
+0 3 * * * /path/to/your/script.sh
 ```
 
-Explanation:
-
-```
-Minute  Hour  Day  Month  Day_of_Week  Command
-0       2     *    *      *            /usr/bin/python3 /path/to/drive_backup.py
-```
 
 3. Save and Exit:
 
@@ -41,3 +52,11 @@ crontab -l
 ```
 grep CRON /var/log/syslog
 ```
+
+## Running procedure:
+
+**Manual**
+
+Run bash file to get the backup upload
+
+`bash start_backup.sh`

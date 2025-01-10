@@ -9,6 +9,7 @@ HOST="localhost"
 GIS_DB="gis"
 GWC_DB="gwc"
 
+PYTHON_FILE="main.py"
 # Enter Docker container
 docker exec -it $CONTAINER_NAME bash -c "
     # Check and create backup directory if it doesn't exist
@@ -26,3 +27,4 @@ docker exec -it $CONTAINER_NAME bash -c "
     pg_dump -U $POSTGRES_USER -h $HOST -F c -b -v -f $BACKUP_DIR/$DATE_DIR/gis.backup $GIS_DB
     pg_dump -U $POSTGRES_USER -h $HOST -F c -b -v -f $BACKUP_DIR/$DATE_DIR/gwc.backup $GWC_DB
 "
+python3 "$PYTHON_FILE"
