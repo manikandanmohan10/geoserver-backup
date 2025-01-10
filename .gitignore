@@ -3,3 +3,5 @@
 backup
 .venv
 service_account.json
+db
+geoserver_upload_datas
