@@ -7,6 +7,7 @@
 - Replace 'backup_folder' with the path to the directory you want to back up.
 - Replace 'main.py' in start_backup.sh with full path.
 
+
 **Setup procedure for backup**
 
 `docker exec -t kartozageoserver-db-1 bash`
