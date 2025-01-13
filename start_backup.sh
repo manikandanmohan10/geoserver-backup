@@ -4,12 +4,12 @@
 CONTAINER_NAME="kartozageoserver-db-1"
 BACKUP_DIR="/backup"
 DATE_DIR=$(date +%Y-%m-%d)
-POSTGRES_USER="postgres"
+POSTGRES_USER="docker"
 HOST="localhost"
 GIS_DB="gis"
 GWC_DB="gwc"
 
-PYTHON_FILE="main.py"
+PYTHON_FILE="/home/ss-pr-cpu-37nwe/cproject/strategy/code/docker-geoserver/geoserver-backup/main.py"
 # Enter Docker container
 docker exec -it $CONTAINER_NAME bash -c "
     # Check and create backup directory if it doesn't exist

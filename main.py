@@ -5,9 +5,10 @@ import os
 from datetime import datetime
 import shutil
 
+main_path = '/home/ss-pr-cpu-37nwe/cproject/strategy/code/docker-geoserver/geoserver-backup/'
 def authenticate():
     scope = ['https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_json_keyfile_name('service_account.json', scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name(main_path + 'service_account.json', scope)
     gauth = GoogleAuth()
     gauth.credentials = creds
     drive = GoogleDrive(gauth)
@@ -42,14 +43,15 @@ def create_folder(drive, folder_name, parent_id=None):
     
 
 def main():
+   
     drive = authenticate()
     folder_id = '1LM_fb457gfkw13JClBzco4ZNvibCWHsA'
     file_name = datetime.now().date().strftime('%Y-%m-%d')
-    shutil.make_archive('temp_drive_backup/'+file_name+'.zip', 'zip', f"db/{file_name}")
-    shutil.make_archive('temp_drive_backup/geoserver_upload_datas.zip', 'zip', "geoserver_upload_datas")
+    shutil.make_archive(f'{main_path}temp_drive_backup/'+file_name, 'zip', f"{main_path}db/{file_name}")
+    shutil.make_archive(f'{main_path}temp_drive_backup/geoserver_upload_datas', 'zip', f"{main_path}geoserver_upload_datas")
     subfolder_id = create_folder(drive, file_name, parent_id=folder_id)
-    backup(drive, 'temp_drive_backup', subfolder_id)
-    shutil.rmtree('temp_drive_backup')
+    backup(drive, f'{main_path}temp_drive_backup', subfolder_id)
+    shutil.rmtree(f'{main_path}temp_drive_backup')
 
 def backup(drive, folder_name, folder_id):
     

@@ -17,12 +17,19 @@ Inside container
 
 `cd /root`
 
-`echo localhost:5432:*:postgres:strategy@123>.pgjson`
+`echo "localhost:5432:*:docker:docker" > ~/.pgpass`
 
 `exit`
 
+`chmod 0600 ~/.pgpass`
 
 **To setup corn for script:**
+
+Give permission
+
+```
+chmod +x /home/ss-pr-cpu-37nwe/cproject/strategy/code/docker-geoserver/geoserver-backup/start_backup.sh
+```
 
 1. Edit the Crontab File:
 
@@ -57,6 +64,8 @@ grep CRON /var/log/syslog
 ## Running procedure:
 
 **Manual**
+
+`cd geoserver-backup`
 
 Run bash file to get the backup upload
 
